@@ -1,0 +1,67 @@
+def gcd(a, b):
+    if b == 0:
+        return a
+
+    return gcd(b, a % b)
+
+    
+#Define a class
+class Fraction:
+
+    def __init__(self, numerator, denomerator):
+
+        self.num  = numerator
+        self.den = denomerator
+
+    def show(self):
+        print self.num,"/",self.den
+
+    def __str__(self):
+        return str(self.num)+'/'+str(self.den)
+
+    def __add__(self, otherfraction):
+
+        newnum = self.num*otherfraction.den + otherfraction.num * self.den
+        newden = self.den * otherfraction.den
+    
+
+        common = gcd(newnum, newden)
+
+        return Fraction(newnum // common, newden // common)
+
+    def __sub__(self, otherfraction):
+        newnum = self.num*otherfraction.den - otherfraction.num * self.den
+        newden = self.den * otherfraction.den
+     
+        common = gcd(newnum, newden)
+
+        return Fraction(newnum // common, newden // common)
+
+        
+
+        
+
+    def __eq__(self, otherfraction):
+
+        firstnum = self.num * otherfraction.den
+        secondnum = otherfraction.num * self.den
+
+        return firstnum == secondnum
+
+    def __div__(self, otherfraction):
+        
+        firstnum = self.num * otherfraction.den
+        secondnum = self.den * otherfraction.num
+
+        common = gcd(firstnum, secondnum)
+
+        return Fraction(firstnum // common, secondnum // common)
+    
+
+        
+    
+    
+        
+
+
+
